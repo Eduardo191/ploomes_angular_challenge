@@ -142,3 +142,12 @@ div.container{
   position: relative;
   color: #ce0c15;
 }
+
+.invisibleLogo {
+  display: none;
+}
+
+#remove_logo {
+  margin-left: 8px;
+}
+
