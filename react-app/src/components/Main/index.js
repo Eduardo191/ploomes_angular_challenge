@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../../global.css'
+
 import Footer from '../Footer'
 import Branding from '../Branding'
 import RowBranding from '../RowBranding'

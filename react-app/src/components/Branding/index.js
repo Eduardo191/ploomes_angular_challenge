@@ -1,4 +1,5 @@
 import React from 'react'
+import LogoImg from '../../assets/metaware_logo.png'
 
 export default function Branding() {
   return (
@@ -10,7 +11,7 @@ export default function Branding() {
       </div>
       <div class="col-xs-6 logo-container">
         <input type="file" id="imgInp" />
-        <img id="company_logo" alt="your image" width="300" />
+        <img id="company_logo" src={LogoImg} alt="your image" width="300" />
         <div>
           <div class="noPrint">
             <a>Edit Logo</a>
