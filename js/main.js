@@ -1,5 +1,15 @@
 angular.module('invoicing', [])
 
+//###################################
+// import { react2angular } from 'react2angular'
+// import TestComponent from './TestComponent'
+
+// angular
+//   .module('invoicing', [])
+//   .component('testComponent', react2angular(TestComponent))
+
+//##################################
+
 // The default logo for the invoice
 .constant('DEFAULT_LOGO', 'images/metaware_logo.png')
 

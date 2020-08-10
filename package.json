@@ -1,0 +1,26 @@
+{
+  "name": "angularinvoicing",
+  "version": "1.0.0",
+  "description": "Use this extremely small and lightweight project built in Angular JS to build your one off Invoices. No monthly fees, No Subscriptions - No heavy duty features, Just simple invoices.",
+  "main": "main.js",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react2angular": "^4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardo191/ploomes_angular_challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eduardo191/ploomes_angular_challenge/issues"
+  },
+  "homepage": "https://github.com/Eduardo191/ploomes_angular_challenge#readme"
+}
