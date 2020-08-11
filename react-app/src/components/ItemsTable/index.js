@@ -4,6 +4,7 @@ import RowItem from '../RowItem'
 
 export default function ItemsTable() {
   const [tax, setTax] = useState(0)
+  const [discount, setDiscount] = useState(0)
   const symbol = useSelector((state) => state.currencySymbol)
   const subTotal = useSelector((state) => state.subTotal)
   const existingItems = useSelector((state) => state.existingItems)
@@ -15,11 +16,15 @@ export default function ItemsTable() {
   }
 
   function calculateGrandTotal() {
-    return (calculateTax()) + (subTotal)
+    return (subTotal + calculateTax() - calculateDiscount())
+  }
+
+  function calculateDiscount() {
+    return (discount * (subTotal)) / 100
   }
 
   function addItem() {
-    dispatch({ type: 'ADD_ITEM', item: 1 })
+    dispatch({ type: 'ADD_ITEM', item: (existingItems[existingItems.length - 1] + 1) })
   }
 
   return (
@@ -32,7 +37,7 @@ export default function ItemsTable() {
         <div className="col-xs-2 text-right">Total</div>
       </div>
       {
-        existingItems.map((item) => <RowItem />)
+        existingItems.map((item) => <RowItem key={item} />)
       }
       <div className="row invoice-item" id={ printMode ? "plus_button" : "" }>
         <div className="col-xs-12 add-item-container" ng-hide="printMode">
@@ -44,10 +49,14 @@ export default function ItemsTable() {
         <div className="col-xs-2 text-right">{`${symbol}${subTotal}`}</div>
       </div>
       <div className="row">
-        <div className="col-xs-10 text-right" id="tax_input">
-          Tax(%): <input value={tax} onChange={(e) => setTax(e.target.value)} />
+        <div className="col-xs-10 text-right">
+          Tax(%): <input value={tax} id="tax_input" onChange={(e) => setTax(e.target.value)} />
         </div> 
         <div className="col-xs-2 text-right">{`${symbol}${calculateTax()}`}</div>
+        <div className="col-xs-10 text-right">
+          Discount(%): <input value={discount} id="discount_input" onChange={(e) => setDiscount(e.target.value)} />
+        </div>
+        <div className="col-xs-2 text-right">{`${symbol}${calculateDiscount()}`}</div>
       </div>
       <div className="row">
         <div className="col-xs-10 text-right">Grand Total:</div>

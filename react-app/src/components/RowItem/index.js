@@ -11,22 +11,21 @@ export default function RowItem() {
   const dispatch = useDispatch()
 
   const calculateSubTotal = () => {
-    const result = itemsCost * itemsQty
-
-    return result
+    return itemsCost * itemsQty
   }
 
   useEffect(() => {
     changeSubTotal()
-    console.log(subTotal)
   }, [calculateSubTotal()])
 
 
   function removeItem() {
     dispatch({ type: 'REMOVE_ITEM' })
+    dispatch({ type: 'CLEAR_SUBTOTAL' })
   }
 
   function changeSubTotal() {
+    dispatch({ type: 'SUB_SUBTOTAL', result: subTotal })
     dispatch({ type: 'ADD_SUBTOTAL', result: itemsCost * itemsQty })
   }
 

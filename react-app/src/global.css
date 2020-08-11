@@ -166,3 +166,7 @@ div.container{
 #plus_button {
   display: none;
 }
+
+#tax_input, #discount_input {
+  width: 50px;
+}
