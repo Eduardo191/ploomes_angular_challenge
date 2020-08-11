@@ -1,15 +1,22 @@
-export function calculateTax(tax, subTotal) {
+function calculateTax(tax, subTotal) {
   return (tax * (subTotal)) / 100
 }
 
-export function calculateDiscount(discount, subTotal) {
+function calculateDiscount(discount, subTotal) {
   return (discount * (subTotal)) / 100
 }
 
-export function calculateGrandTotal(tax, subTotal, discount) {
+function calculateGrandTotal(tax, subTotal, discount) {
   return (subTotal + calculateTax(tax, subTotal) - calculateDiscount(discount, subTotal))
 }
 
-export function calculateSubTotal(itemsCost, itemsQty) {
+function calculateSubTotal(itemsCost, itemsQty) {
   return itemsCost * itemsQty
+}
+
+module.exports = {
+  calculateTax,
+  calculateDiscount,
+  calculateGrandTotal,
+  calculateSubTotal
 }
