@@ -1,12 +1,23 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function RowNoPrintActions() {
+  const printMode = useSelector((state) => state.printMode)
+  const dispatch = useDispatch()
+
+  function changePrintMode() {
+    dispatch({ type: 'CHANGE_PRINT_MODE' })
+  }
+
+  function printInfo() {
+    window.print()
+  }
+
   return (
     <div class="row noPrint actions">
-      <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
-      <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Reset</a>
-      <a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
-      <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>
+      <a href="#" className="btn btn-primary" onClick={printInfo} id={ printMode ? "" : "print_button" }>Print</a>
+      <a href="#" className="btn btn-primary">Reset</a>
+      <a href="#" className="btn btn-primary" onClick={changePrintMode}>{ printMode ? 'Turn Off Print Mode' : 'Turn On Print Mode' }</a>
     </div>
   )
 }

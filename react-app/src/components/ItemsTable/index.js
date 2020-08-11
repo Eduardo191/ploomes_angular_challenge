@@ -1,28 +1,25 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import RowItem from '../RowItem'
 
 export default function ItemsTable() {
-  const [itemsQty, setItemsQty] = useState(0)
-  const [itemsDescription, setItemsDescription] = useState('')
-  const [itemsCost, setItemsCost] = useState(0)
-  const [itemsArray, setItemsArray] = useState([])
   const [tax, setTax] = useState(0)
-  const symbol = useSelector((state) => state)
-
-  function removeItem(item) {
-    itemsArray.splice(itemsArray.indexOf(item), 1)
-  }
+  const symbol = useSelector((state) => state.currencySymbol)
+  const subTotal = useSelector((state) => state.subTotal)
+  const existingItems = useSelector((state) => state.existingItems)
+  const printMode = useSelector((state) => state.printMode)
+  const dispatch = useDispatch()
 
   function calculateTax() {
-    return (tax * itemsCost) / 100
+    return (tax * (subTotal)) / 100
   }
 
   function calculateGrandTotal() {
-    return (calculateTax()) + (itemsCost * itemsQty)
+    return (calculateTax()) + (subTotal)
   }
 
-  function calculateSubTotal() {
-    return itemsCost * itemsQty
+  function addItem() {
+    dispatch({ type: 'ADD_ITEM', item: 1 })
   }
 
   return (
@@ -34,45 +31,17 @@ export default function ItemsTable() {
         <div className="col-xs-2">Cost {symbol}</div>
         <div className="col-xs-2 text-right">Total</div>
       </div>
-      <div className="row invoice-item" ng-repeat="item in invoice.items" ng-animate="'slide-down'">
-        <div className="col-xs-1 remove-item-container">
-          <a href ng-hide="printMode" className="btn btn-danger">[X]</a>
-        </div>
-        <div className="col-xs-5 input-container">
-          <input 
-            value={itemsDescription} 
-            onChange={(e) => setItemsDescription(e.target.value)} 
-            placeholder="Description" 
-          />
-        </div>
-        <div className="col-xs-2 input-container">
-          <input 
-            onChange={(e) => setItemsQty(e.target.value)} 
-            value={itemsQty} 
-            size="4" 
-            placeholder="Quantity" 
-          />
-        </div>
-        <div className="col-xs-2 input-container">
-          <input 
-            onChange={(e) => setItemsCost(e.target.value)} 
-            value={itemsCost} 
-            size="6" 
-            placeholder="Cost" 
-          />
-        </div>
-        <div className="col-xs-2 text-right input-container">
-          {`${symbol}${calculateSubTotal()}`}
-        </div>
-      </div>
-      <div className="row invoice-item">
+      {
+        existingItems.map((item) => <RowItem />)
+      }
+      <div className="row invoice-item" id={ printMode ? "plus_button" : "" }>
         <div className="col-xs-12 add-item-container" ng-hide="printMode">
-          <a className="btn btn-primary" href ng-click="addItem()" >[+]</a>
+          <a className="btn btn-primary" href onClick={addItem} >[+]</a>
         </div>
       </div>
       <div className="row">
         <div className="col-xs-10 text-right">Sub Total</div>
-        <div className="col-xs-2 text-right">{`${symbol}${calculateSubTotal()}`}</div>
+        <div className="col-xs-2 text-right">{`${symbol}${subTotal}`}</div>
       </div>
       <div className="row">
         <div className="col-xs-10 text-right" id="tax_input">

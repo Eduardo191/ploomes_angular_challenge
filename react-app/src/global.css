@@ -151,3 +151,18 @@ div.container{
   margin-left: 8px;
 }
 
+#print_button {
+  display: none;
+}
+
+.btn-primary {
+  margin-left: 3px;
+}
+
+#close_button {
+  display: none;
+}
+
+#plus_button {
+  display: none;
+}
