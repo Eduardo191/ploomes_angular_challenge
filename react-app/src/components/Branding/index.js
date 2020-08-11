@@ -14,17 +14,17 @@ export default function Branding() {
   }
 
   return (
-    <div class="row branding">
-      <div class="col-xs-6">
-        <div class="invoice-number-container" onChange={(e) => setInvoiceNumber(e.target.value)}>
-          <label for="invoice-number">Invoice #</label><input value={invoiceNumber} type="text" id="invoice-number" />
+    <div className="row branding">
+      <div className="col-xs-6">
+        <div className="invoice-number-container" onChange={(e) => setInvoiceNumber(e.target.value)}>
+          <label htmlFor="invoice-number">Invoice #</label><input value={invoiceNumber} type="text" id="invoice-number" />
         </div>
       </div>
-      <div class="col-xs-6 logo-container">
+      <div className="col-xs-6 logo-container">
         <input type="file" id="imgInp" />
         <img id="company_logo" className={ isHide ? 'invisibleLogo' : '' } src={LogoImg} alt="your image" width="300" />
         <div>
-          <div class="noPrint">
+          <div className="noPrint">
             <a onClick={editLogo}>Edit Logo</a>
             <a id="remove_logo" onClick={toggleLogo} >{ isHide ? 'Show logo' : 'Hide logo' }</a>
           </div>

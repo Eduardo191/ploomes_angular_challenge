@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { calculateSubTotal } from '../../services/calcFunctions'
 
 export default function RowItem() {
   const [itemsDescription, setItemsDescription] = useState('')
@@ -10,13 +11,9 @@ export default function RowItem() {
   const printMode = useSelector((state) => state.printMode)
   const dispatch = useDispatch()
 
-  const calculateSubTotal = () => {
-    return itemsCost * itemsQty
-  }
-
   useEffect(() => {
     changeSubTotal()
-  }, [calculateSubTotal()])
+  }, [calculateSubTotal(itemsCost, itemsQty)])
 
 
   function removeItem() {
@@ -58,7 +55,7 @@ export default function RowItem() {
         />
       </div>
       <div className="col-xs-2 text-right input-container">
-        {symbol}{calculateSubTotal()} 
+        {symbol}{calculateSubTotal(itemsCost, itemsQty)} 
       </div>
 
     </div>

@@ -14,14 +14,31 @@ export default function RowNoPrintActions() {
   }
 
   function resetItems() {
+    dispatch({ type: 'CLEAR_SUBTOTAL' })
     dispatch({ type: 'RESET_ITEMS' })
   }
 
   return (
-    <div class="row noPrint actions">
-      <a href="#" className="btn btn-primary" onClick={printInfo} id={ printMode ? "" : "print_button" }>Print</a>
-      <a href="#" className="btn btn-primary" onClick={resetItems}>Reset</a>
-      <a href="#" className="btn btn-primary" onClick={changePrintMode}>{ printMode ? 'Turn Off Print Mode' : 'Turn On Print Mode' }</a>
+    <div className="row noPrint actions">
+      <a 
+        href="#" 
+        className="btn btn-primary" 
+        onClick={printInfo} id={ printMode ? "" : "print_button" }>
+          Print
+      </a>
+
+      <a 
+        href="#" 
+        className="btn btn-primary" 
+        onClick={resetItems}>
+          Reset
+      </a>
+      
+      <a 
+        href="#" 
+        className="btn btn-primary" 
+        onClick={changePrintMode}>{ printMode ? 'Turn Off Print Mode' : 'Turn On Print Mode' }
+      </a>
     </div>
   )
 }
